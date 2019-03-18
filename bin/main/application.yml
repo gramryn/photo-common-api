@@ -1,0 +1,56 @@
+# Spring properties
+spring:
+  application:
+    name: photo-common-api
+  security:
+    username: admin
+    password: woowaphoto
+
+# HTTP Server
+server:
+  port: ${PORT:3334}   # HTTP (Tomcat) port
+
+management:
+  security:
+    enabled: false
+
+
+---
+spring:
+  profiles: local
+  
+datasource:
+  photo:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.10.37.138:3306/bmtest?allowMultiQueries=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: bmtest
+    password: bmtest123
+    
+jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: none
+    naming:
+      strategy: org.hibernate.dialect.MySQL5Dialect
+  generate-ddl: false
+
+---
+spring:
+  profiles: prd
+
+datasource:
+  photo:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.10.37.138:3306/bmtest?allowMultiQueries=true&serverTimezone=UTC&characterEncoding=UTF-8
+    username: bmtest
+    password: bmtest123
+    initialization-mode: never
+    
+jpa:
+  show-sql: true
+  hibernate:
+    ddl-auto: none
+    naming:
+      strategy: org.hibernate.dialect.MySQL5Dialect
+  generate-ddl: false
+
